@@ -5,6 +5,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 
 /******************************************************************************
@@ -14,7 +18,11 @@ import java.awt.event.ActionListener;
  ******************************************************************************/
 public class Main implements ActionListener {
 
-    JFrame frame = new JFrame("Ezekiel's USD Currency Converter");
+    Date date = new Date();
+    SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+    String strDate= formatter.format(date);
+
+    JFrame frame = new JFrame("Ezekiel's USD Currency Converter (" + strDate + ")");
     Font font1 = new Font("Currier", Font.BOLD, 13);
 
     public Main() {
@@ -25,7 +33,7 @@ public class Main implements ActionListener {
         JPanel panelCenter = new JPanel();
 
         // declare JLabels
-        JLabel usdLabel = new JLabel("USD Currency Conversion Amount: ");
+        JLabel usdLabel = new JLabel("Currency Conversion Amount: ");
         usdLabel.setFont(font1);
         JLabel usdAmountLabel = new JLabel("USD Amount: ");
         usdAmountLabel.setFont(font1);
