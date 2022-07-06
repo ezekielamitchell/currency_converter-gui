@@ -6,9 +6,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.EventObject;
 
 
 /******************************************************************************
@@ -24,6 +26,13 @@ public class Main implements ActionListener {
 
     JFrame frame = new JFrame("Ezekiel's USD Currency Converter (" + strDate + ")");
     Font font1 = new Font("Currier", Font.BOLD, 13);
+    JButton convertButton;
+    JTextField fieldConversion, usdAmountField;
+    JComboBox<String> converterBox;
+    String[] currency = {"Select Currency", "Yen"};
+
+    // StackOverflow @ https://stackoverflow.com/users/256196/bohemian
+    public static final DecimalFormat DF = new DecimalFormat("0.00");
 
     public Main() {
 
@@ -47,24 +56,27 @@ public class Main implements ActionListener {
         frame.setLayout(new BorderLayout());
 
         // conversion field
-        JTextField fieldConversion = new JTextField();
+        fieldConversion = new JTextField();
         fieldConversion.setPreferredSize(new Dimension(250,20));
         fieldConversion.setEditable(false);
 
 
         // usdAmount field
-        JTextField usdAmountField = new JTextField();
+        usdAmountField = new JTextField();
         usdAmountField.setPreferredSize(new Dimension(250,20));
 
 
         // converter box
-        String[] currency = {"Select Currency", "Yen"};
-        JComboBox<String> converterBox = new JComboBox<>(currency);
+        converterBox = new JComboBox<>(currency);
+        converterBox.addActionListener(this);
         converterBox.setPreferredSize(new Dimension(250, 50));
 
+
+
         // convert button
-        JButton convertButton = new JButton("Convert");
+        convertButton = new JButton("Convert");
         convertButton.setPreferredSize(new Dimension(250, 25));
+        convertButton.addActionListener(this);
 
 
         // panelNorth
@@ -105,7 +117,19 @@ public class Main implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
+
+        if (e.getSource() ==  convertButton && converterBox.getSelectedIndex() == 0) {
+            fieldConversion.setText("n/a select converting currency");
+        }
+
+        // selection == Yen
+        if (e.getSource() ==  convertButton && converterBox.getSelectedIndex() == 1) {
+            fieldConversion.setText(Double.toString(
+                    Double.parseDouble(
+                            DF.format(Double.parseDouble(usdAmountField.getText()) * 135.82))));
+        }
     }
+
 
     public static void main(String[] args) {
         Main main = new Main();
