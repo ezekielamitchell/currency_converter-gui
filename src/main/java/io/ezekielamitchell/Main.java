@@ -29,7 +29,7 @@ public class Main implements ActionListener {
     JButton convertButton;
     JTextField fieldConversion, usdAmountField;
     JComboBox<String> converterBox;
-    String[] currency = {"Select Currency", "Yen"};
+    String[] currency = {"Select Currency", "Yen", "Baht"};
 
     // StackOverflow @ https://stackoverflow.com/users/256196/bohemian
     public static final DecimalFormat DF = new DecimalFormat("0.00");
@@ -127,6 +127,13 @@ public class Main implements ActionListener {
             fieldConversion.setText(Double.toString(
                     Double.parseDouble(
                             DF.format(Double.parseDouble(usdAmountField.getText()) * 135.82))));
+        }
+
+        // selection == Baht
+        if (e.getSource() ==  convertButton && converterBox.getSelectedIndex() == 2) {
+            fieldConversion.setText(Double.toString(
+                    Double.parseDouble(
+                            DF.format(Double.parseDouble(usdAmountField.getText()) * 36.28))));
         }
     }
 
