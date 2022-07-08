@@ -22,14 +22,14 @@ public class Main implements ActionListener {
 
     Date date = new Date();
     SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-    String strDate= formatter.format(date);
+    String strDate= "06 July 2022";
 
     JFrame frame = new JFrame("Ezekiel's USD Currency Converter (" + strDate + ")");
     Font font1 = new Font("Currier", Font.BOLD, 13);
     JButton convertButton;
     JTextField fieldConversion, usdAmountField;
     JComboBox<String> converterBox;
-    String[] currency = {"Select Currency", "Yen", "Baht"};
+    String[] currency = {"Select Currency", "Yen", "Baht", "AUD"};
 
     // StackOverflow @ https://stackoverflow.com/users/256196/bohemian
     public static final DecimalFormat DF = new DecimalFormat("0.00");
@@ -124,16 +124,17 @@ public class Main implements ActionListener {
 
         // selection == Yen
         if (e.getSource() ==  convertButton && converterBox.getSelectedIndex() == 1) {
-            fieldConversion.setText(Double.toString(
-                    Double.parseDouble(
-                            DF.format(Double.parseDouble(usdAmountField.getText()) * 135.82))));
+            fieldConversion.setText("¥" + Double.parseDouble(DF.format(Double.parseDouble(usdAmountField.getText()) * 135.82)));
         }
 
         // selection == Baht
         if (e.getSource() ==  convertButton && converterBox.getSelectedIndex() == 2) {
-            fieldConversion.setText(Double.toString(
-                    Double.parseDouble(
-                            DF.format(Double.parseDouble(usdAmountField.getText()) * 36.28))));
+            fieldConversion.setText("฿" + Double.parseDouble(DF.format(Double.parseDouble(usdAmountField.getText()) * 36.28)));
+        }
+
+        // selection == AUD
+        if (e.getSource() ==  convertButton && converterBox.getSelectedIndex() == 3) {
+            fieldConversion.setText("A$" + Double.parseDouble(DF.format(Double.parseDouble(usdAmountField.getText()) * 1.47)));
         }
     }
 
