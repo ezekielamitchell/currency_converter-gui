@@ -31,7 +31,6 @@ public class Main implements ActionListener {
     JComboBox<String> converterBox;
     String[] currency = {"Select Currency", "Yen", "Baht", "AUD"};
 
-    // StackOverflow @ https://stackoverflow.com/users/256196/bohemian
     public static final DecimalFormat DF = new DecimalFormat("0.00");
 
     public Main() {
