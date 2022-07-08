@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.EventObject;
+import java.util.Objects;
 
 
 /******************************************************************************
@@ -65,6 +66,7 @@ public class Main implements ActionListener {
         usdAmountField.setPreferredSize(new Dimension(250,20));
 
 
+
         // converter box
         converterBox = new JComboBox<>(currency);
         converterBox.addActionListener(this);
@@ -113,27 +115,57 @@ public class Main implements ActionListener {
         frame.setVisible(true);
     }
 
+    public boolean checkNull() {
+        return usdAmountField.getText().isEmpty();
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
 
+
+
         if (e.getSource() ==  convertButton && converterBox.getSelectedIndex() == 0) {
-            fieldConversion.setText("n/a select converting currency");
+
+            if (checkNull()) {
+                fieldConversion.setText("n/a enter usd amount to convert");
+            } else {
+                fieldConversion.setText("n/a select converting currency");
+            }
+
         }
 
         // selection == Yen
         if (e.getSource() ==  convertButton && converterBox.getSelectedIndex() == 1) {
-            fieldConversion.setText("¥" + Double.parseDouble(DF.format(Double.parseDouble(usdAmountField.getText()) * 135.82)));
+
+            if (checkNull()) {
+                fieldConversion.setText("n/a enter usd amount to convert");
+            } else {
+                fieldConversion.setText("¥" + Double.parseDouble(DF.format(Double.parseDouble(usdAmountField.getText()) * 135.82)));
+            }
+
         }
 
         // selection == Baht
         if (e.getSource() ==  convertButton && converterBox.getSelectedIndex() == 2) {
-            fieldConversion.setText("฿" + Double.parseDouble(DF.format(Double.parseDouble(usdAmountField.getText()) * 36.28)));
+
+            if (checkNull()) {
+                fieldConversion.setText("n/a enter usd amount to convert");
+            } else {
+                fieldConversion.setText("฿" + Double.parseDouble(DF.format(Double.parseDouble(usdAmountField.getText()) * 36.28)));
+            }
+
         }
 
         // selection == AUD
         if (e.getSource() ==  convertButton && converterBox.getSelectedIndex() == 3) {
-            fieldConversion.setText("A$" + Double.parseDouble(DF.format(Double.parseDouble(usdAmountField.getText()) * 1.47)));
+
+            if (checkNull()) {
+                fieldConversion.setText("n/a enter usd amount to convert");
+            } else {
+                fieldConversion.setText("A$" + Double.parseDouble(DF.format(Double.parseDouble(usdAmountField.getText()) * 1.47)));
+            }
+
         }
     }
 
