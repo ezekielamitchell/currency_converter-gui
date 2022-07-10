@@ -141,7 +141,11 @@ public class Main implements ActionListener {
             if (checkNull()) {
                 fieldConversion.setText("n/a enter usd amount to convert");
             } else {
-                fieldConversion.setText("¥" + Double.parseDouble(DF.format(Double.parseDouble(usdAmountField.getText()) * 135.82)));
+                if (testString(usdAmountField.getText())) {
+                    fieldConversion.setText("¥" + Double.parseDouble(DF.format(Double.parseDouble(usdAmountField.getText()) * 135.82)));
+                } else {
+                    fieldConversion.setText("error: enter only integers");
+                }
             }
 
         }
@@ -152,7 +156,11 @@ public class Main implements ActionListener {
             if (checkNull()) {
                 fieldConversion.setText("n/a enter usd amount to convert");
             } else {
-                fieldConversion.setText("฿" + Double.parseDouble(DF.format(Double.parseDouble(usdAmountField.getText()) * 36.28)));
+                if (testString(usdAmountField.getText())) {
+                    fieldConversion.setText("฿" + Double.parseDouble(DF.format(Double.parseDouble(usdAmountField.getText()) * 36.28)));
+                } else {
+                    fieldConversion.setText("error: enter only integers");
+                }
             }
 
         }
@@ -163,10 +171,25 @@ public class Main implements ActionListener {
             if (checkNull()) {
                 fieldConversion.setText("n/a enter usd amount to convert");
             } else {
-                fieldConversion.setText("A$" + Double.parseDouble(DF.format(Double.parseDouble(usdAmountField.getText()) * 1.47)));
+                if (testString(usdAmountField.getText())) {
+                    fieldConversion.setText("A$" + Double.parseDouble(DF.format(Double.parseDouble(usdAmountField.getText()) * 1.47)));
+                } else {
+                    fieldConversion.setText("error: enter only integers");
+                }
             }
-
         }
+    }
+
+    // test to see if user input char other than an int
+    public boolean testString(String text) {
+
+        try {
+            Integer.parseInt(text);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+
     }
 
 
