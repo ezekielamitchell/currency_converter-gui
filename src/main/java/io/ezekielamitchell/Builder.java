@@ -8,9 +8,7 @@ import java.text.DecimalFormat;
 
 public class Builder implements ActionListener {
 
-    String strDate = "06 July 2022";
-
-    JFrame frame = new JFrame("Ezekiel's USD Currency Converter (" + strDate + ")");
+    JFrame frame = new JFrame("Ezekiel's USD Currency Converter");
     Font font1 = new Font("Currier", Font.BOLD, 13);
     JButton convertButton;
     JTextField fieldConversion, usdAmountField;
