@@ -1,6 +1,7 @@
 package io.ezekielamitchell;
 
 
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,6 +14,7 @@ import java.text.DecimalFormat;
  * @date 01 July 2022
  * This program produces a simple currency conversion tool
  ******************************************************************************/
+
 
 
 public class Main implements ActionListener {
@@ -161,7 +163,7 @@ public class Main implements ActionListener {
 
 
     public static void main(String[] args) {
-        Main main = new Main();
+        new Main();
     }
 
 
